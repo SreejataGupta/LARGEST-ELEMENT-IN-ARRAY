@@ -1,0 +1,43 @@
+public class FindLargestElement {
+
+    public static void main(String[] args) {
+        int[] numbers = {12, 45, 67, 23, 89, 34};
+
+        // Method 1: Iterative approach (Standard)
+        try {
+            int largest = findLargest(numbers);
+            System.out.println("The largest element is: " + largest);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        // Method 2: Java 8 Stream approach
+        if (numbers != null && numbers.length > 0) {
+            int largestStream = java.util.Arrays.stream(numbers).max().getAsInt();
+            System.out.println("The largest element (using Streams) is: " + largestStream);
+        }
+    }
+
+    /**
+     * Finds the largest integer in an array.
+     * @param arr The input array of integers
+     * @return The maximum integer in the array
+     * @throws IllegalArgumentException if the array is null or empty
+     */
+    public static int findLargest(int[] arr) {
+        // Validation check for empty or null array
+        if (arr == null || arr.length == 0) {
+            throw new IllegalArgumentException("Array must not be null or empty.");
+        }
+
+        int max = arr[0]; // Assume first element is largest
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i]; // Update max when a larger value is found
+            }
+        }
+
+        return max;
+    }
+}
